@@ -1,0 +1,21 @@
+{% extends "courses/base.html" %}
+
+{% block title %}{{ lesson.title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ lesson.title }}</h2>
+    <p>{{ lesson.content|linebreaks }}</p>
+    
+    {% if not user.is_superuser %}
+    <form action="{% url 'mark_completed' lesson.id %}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-primary" type="submit">Mark as Completed</button>
+    </form>
+    {% endif %}
+    
+    <a href="{% url 'course_detail' lesson.course.id %}" class="btn btn-secondary mt-3">
+        Back to Course
+    </a>
+</div>
+{% endblock %}

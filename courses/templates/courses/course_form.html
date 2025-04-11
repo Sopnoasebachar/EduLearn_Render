@@ -1,0 +1,21 @@
+{% extends "courses/base.html" %}
+
+{% block title %}Add a New Course{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Add a New Course</h1>
+    
+    <!-- Course Creation Form -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Render the form fields -->
+        
+        <!-- Save Button -->
+        <button type="submit" class="btn btn-success">Save Course</button>
+    </form>
+    
+    <!-- Back to Course List Link -->
+    <a href="{% url 'course_list' %}" class="btn btn-secondary mt-3">Back to Course List</a>
+</div>
+{% endblock %}
